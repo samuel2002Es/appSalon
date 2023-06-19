@@ -1,6 +1,7 @@
-export const formatCurrency = price => {
-    Number(price).toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    })
+const options = {
+    style: 'currency',
+    currency: 'USD'
+}
+export const formatCurrrency = price => {
+    Number(price).toLocaleString('en-US',options)
 }
