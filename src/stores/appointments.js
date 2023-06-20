@@ -37,7 +37,14 @@ export const useAppointmentsStore = defineStore('appointments', () => {
         //console.log(services.value)
     }
     //los computed son para que se calculen solos en caso de cambiar algo en ellos
-
+    function createAppointment(){
+        const appointment = {
+            services: services.value.map(item => item._id),
+            date: date.value,
+            time: time.value,
+        }
+        console.log(appointment)
+    }
     const isServiceSelected = computed(()=>{
         return (id) => services.value.some( serviceItem => serviceItem._id === id)
             //si algun servicio esta en mi variable services es porque esta seleccionado, 
@@ -55,6 +62,7 @@ export const useAppointmentsStore = defineStore('appointments', () => {
     })
     return {
         onServiceSelected,
+        createAppointment,
         isServiceSelected,
         services,
         date,
@@ -62,6 +70,6 @@ export const useAppointmentsStore = defineStore('appointments', () => {
         time,
         totalAmount,
         noServicesSelected,
-        isValidReservation
+        isValidReservation,
     }
 })

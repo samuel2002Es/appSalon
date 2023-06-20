@@ -25,6 +25,7 @@
     <div class="lg:flex gap-5 items-start">
       <div class="w-full lg:w-96 bg-white flex justify-center rounded-lg">
         <VueTailwindDatePicker 
+          :disable-date="disableDate"
           i18n="es-mx"
           as-single
           no-input
@@ -42,7 +43,9 @@
       </div>
     </div>
     <div v-if="appointments.isValidReservation" class="flex justify-end">
-      <button class="w-full md:w-auto bg-blue-500 p-3 rounded-lg uppercase font-black text-white">Confirmar Reservacion</button>
+      <button class="w-full md:w-auto bg-blue-500 p-3 rounded-lg uppercase font-black text-white"
+        @click="appointments.createAppointment()"  
+      >Confirmar Reservacion</button>
     </div>
 
   </div>
@@ -60,4 +63,10 @@ const formatter = ref({
   date: 'DD/MM/YYYY',
   month: 'MMM'
 })
+
+const disableDate = (date) => {
+  const today = new Date()
+  //desavilita los dias anteriores a hoy, los meses que siguen despues de uno, y sabados y domingos
+  return date < today || date.getMonth() > today.getMonth() + 1 || [0,6].includes(date.getDay())
+}
 </script>
