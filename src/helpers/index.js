@@ -3,5 +3,9 @@ const options = {
     currency: 'USD'
 }
 export const formatCurrrency = price => {
-    Number(price).toLocaleString('en-US',options)
+    return Number(price).toLocaleString('en-US',options)
+}
+
+export const prueba = (price) => {
+    return price
 }
