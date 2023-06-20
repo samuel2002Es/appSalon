@@ -8,9 +8,9 @@ export const useServicesStore = defineStore('services', ()=>{
         try {
             const { data } = await ServicesAPI.all()
             services.value = data
-            console.log(data)
+            //console.log(data)
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     })
     return {

@@ -22,5 +22,8 @@
       Cita y Resumen
     </RouterLink>
   </nav>
-  <RouterView />
+  <!-- con space-y-5 logramos que a todos los hojos del routeview les ponga separacion -->
+  <div class="space-y-5">
+    <RouterView />
+  </div>
 </template>
