@@ -13,10 +13,27 @@
     :key="service._id"
     :service="service"
   ></SelectedService>
-  <p
-    class="text-white text-right text-2xl">Total a pagar: 
-    <span class="font-black">{{ formatCurrrency(appointments.totalAmount) }}</span>
-  </p>
+    <p
+      class="text-white text-right text-2xl">Total a pagar: 
+      <span class="font-black">{{ formatCurrrency(appointments.totalAmount) }}</span>
+    </p>
+  </div>
+
+  <div class="space-y-8" v-if="!appointments.noServicesSelected">
+    <h3 class="text-3xl font-extrabold text-white">Fecha y hora</h3>
+    
+    <div class="lg:flex gap-5 items-start">
+      <div class="w-full lg:w-96 bg-white flex justify-center rounded-lg">
+        <VueTailwindDatePicker 
+          i18n="es-mx"
+          as-single
+          no-input
+        ></VueTailwindDatePicker>
+      </div>
+      <div>
+        
+      </div>
+    </div>
   </div>
 
 </template>
@@ -24,6 +41,7 @@
 import SelectedService from '../../components/SelectedService.vue';
 import { useAppointmentsStore } from '../../stores/appointments';
 import { formatCurrrency } from '../../helpers'
+import VueTailwindDatePicker from 'vue-tailwind-datepicker'
 
 const appointments = useAppointmentsStore()
 </script>
