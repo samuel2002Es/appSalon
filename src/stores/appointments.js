@@ -42,6 +42,7 @@ export const useAppointmentsStore = defineStore('appointments', () => {
             services: services.value.map(item => item._id),
             date: date.value,
             time: time.value,
+            totalAmount: totalAmount.value
         }
         console.log(appointment)
     }
