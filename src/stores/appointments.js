@@ -12,8 +12,7 @@ export const useAppointmentsStore = defineStore('appointments', () => {
         const startHour = 10
         const endHour = 19
         for (let hour = startHour; hour <= endHour; hour++) {
-            hours.value.push(hour + ":00")
-            
+            hours.value.push(hour + ":00")        
         }
     })
 

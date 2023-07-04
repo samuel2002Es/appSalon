@@ -3,6 +3,7 @@
     <h1 class="text-6xl font-extrabold text-white text-center mt-10">Crea una cuenta</h1>
     <p class="text-2xl text-white text-center my-5">Crea una cuenta en AppSalón</p>
     <FormKit 
+        id="registerForm"
         type="form"
         :actions="false"
         incomplete-message="No se pudo enviar, revisa las notificaciones"
@@ -62,14 +63,45 @@
   </div>
 </template>
 <script setup>
+    import { inject } from 'vue'
     import AuthAPI from '../../api/AuthAPI'
+    //import { useToastn } from '../../stores/toastPrueba';
+    import { reset } from '@formkit/vue'
+
+
+    //usando store
+    /* const store = useToastn()  
+    store.toastPrueba.open({
+        message:'Soy buenisimo',
+        type: 'success'
+    }) */
+    //usando inject desde main
+    const toast = inject('toast')
+    /* toast.open({
+    message: 'Probando Toast',
+    type: 'success'
+    })
+ */
     //utilizando destructuracion sacamos password_confirm, y volvemos a escribir la data sin ese valor
-    const handleSubmit = async ({password_confirm, ...data}) => {
+    const handleSubmit = async ({password_confirm, ...FormData}) => {
+        console.log(FormData)
         //para obtener todos los errores que se tengan de faltas en informacion que previamente establecimos, tenemos que meterlo en un try catch
         try {
             //interaccion con base de datos tiene que llevar el await
-            await AuthAPI.register(data)
+            //data siempre se crea en axios cuando una peticion es correcta
+            const { data } = await AuthAPI.register(FormData)
+            //console.log(data.msg)
+            toast.open({
+                message: data.msg,
+                type: 'success'
+            })
+            reset('registerForm')
         } catch (error) {
+            //consultas que fallan con axios estan en response
+            toast.open({
+                message: error.response.data.msg,
+                type: 'error'
+            })
             console.log(error)
         }
     }   
