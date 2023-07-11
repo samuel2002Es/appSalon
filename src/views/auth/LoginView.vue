@@ -57,7 +57,7 @@ const handleSubmit = async (formData)=>{
         localStorage.setItem('AUTH_TOKEN', data.token)
         setTimeout(()=>{
             router.push({name: 'my-appointments'})
-        },5000)
+        },2000)
     } catch (error) {
         toast.open({
                 message: error.response.data.msg,
