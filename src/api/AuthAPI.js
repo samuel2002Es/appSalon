@@ -14,11 +14,12 @@ export default {
         //cuando es una peticion get el segundo parametro son las configuraciones no los datos
         //get ruta,config
         //post ruta,datos,config
-        const token = localStorage.getItem('AUTH_TOKEN');
-        return api.get('/auth/user',{
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        })
+        //const token = localStorage.getItem('AUTH_TOKEN');
+        // {
+        //     headers:{
+        //         Authorization:`Bearer ${token}`
+        //     }
+        // }
+        return api.get('/auth/user')
     }
 }
